@@ -1,9 +1,13 @@
 # Go Chase It! - `my_robot` package
 
-First, the robot base was defined in [`urdf/my_robot.xacro`](urdf/my_robot.xacro):
+To run, execute
 
-![](.readme/initial-robot.png)
+```bash
+roslaunch my_robot world.launch
+```
 
-Wheels were then added for fun and profit:
+This will spawn the Gazebo world including a white ball to chase,
+as well as the differential drive robot equipped with Camera and
+an unused LiDAR. RViz will be started alongside Gazebo.
 
-![](.readme/with-wheels.png)
+See [`urdf/my_robot.xacro`](urdf/my_robot.xacro) for the robot definition.
