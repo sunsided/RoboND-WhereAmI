@@ -1,0 +1,8 @@
+[submodule "my_robot"]
+	path = my_robot
+	url = git@github.com:sunsided/RoboND-GoChaseIt.git
+	branch = my_robot
+[submodule "ball_chaser"]
+	path = ball_chaser
+	url = git@github.com:sunsided/RoboND-GoChaseIt.git
+	branch = ball_chaser
