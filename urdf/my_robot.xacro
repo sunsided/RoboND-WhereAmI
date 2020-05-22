@@ -140,4 +140,39 @@
         <dynamics damping="1.0" friction="1.0"/>
     </joint>
 
+    <link name="camera">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.05 0.05 0.05"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.05 0.05 0.05"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="0.1"/>
+            <origin xyz="0.0 0 0" rpy=" 0 0 0"/>
+            <box_inertia
+                    m="0.1" x="0.05" y="0.05" z="0.05"/>
+            <inertia
+                    ixx="1e-6" ixy="0" ixz="0"
+                    iyy="1e-6" iyz="0"
+                    izz="1e-6"
+            />
+        </inertial>
+    </link>
+
+    <joint type="fixed" name="camera_joint">
+        <axis xyz="0 1 0" rpy="0 0 0"/>
+        <origin xyz="0.2 0 0" rpy="0 0 0"/>
+        <child link="camera"/>
+        <parent link="chassis"/>
+    </joint>
+
 </robot>
