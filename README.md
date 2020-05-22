@@ -1,6 +1,15 @@
 # Go Chase It!
 
+To run the world, run:
+
+```bash
+roslaunch my_robot world.launch
+````
+
 ## Building with CLion IDE
+
+**Note:** This does not _really_ work, as CLion will be unable to find generated headers. It's still a bit
+          better than doing everything the hard way.
 
 The full requirements for setting up CLion are given in the [sunsided/robond-ros-docker](https://github.com/sunsided/robond-ros-docker)
 repository. In short, run SSHD in Docker, configure a Remote Host build to connect to it, then configure
