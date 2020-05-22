@@ -5,7 +5,6 @@
   <description>The my_robot package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
-  <!-- Example:  -->
   <maintainer email="thanks@but.no">Markus Mayer</maintainer>
 
 
@@ -24,7 +23,6 @@
 
   <!-- Author tags are optional, multiple are allowed, one per tag -->
   <!-- Authors do not have to be maintainers, but could be -->
-  <!-- Example: -->
   <author email="thanks@but.no">Markus Mayer</author>
 
 
