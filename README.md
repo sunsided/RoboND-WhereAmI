@@ -1,6 +1,6 @@
 # Go Chase It!
 
-## CLion
+## Building with CLion IDE
 
 The full requirements for setting up CLion are given in the [sunsided/robond-ros-docker](https://github.com/sunsided/robond-ros-docker)
 repository. In short, run SSHD in Docker, configure a Remote Host build to connect to it, then configure
