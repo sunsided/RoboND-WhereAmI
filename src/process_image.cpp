@@ -13,29 +13,16 @@ public:
         _sub = _n.subscribe("/camera/rgb/image_raw", 10, &ProcessImage::follow_white_ball, this);
 
         _n.param("forward_vel", _linear_velocity, 0.2F);
-        _n.param("angular_vel", _angular_velocity, 0.7853981633974483F);
+        _n.param("angular_vel", _angular_velocity, 1.5707963267948966F);
     }
 
 private:
-    bool velocities_changed(const float linear_velocity, const float angular_velocity) const {
-        const auto linear_changed = linear_velocity != _prev_linear;
-        const auto angular_changed = angular_velocity != _prev_angular;
-        return linear_changed || angular_changed;
-    }
-
     void drive_robot(const float linear_velocity, const float angular_velocity) {
-        if (!velocities_changed(linear_velocity, angular_velocity)) {
-            return;
-        }
-
         ball_chaser::DriveToTarget srv;
         srv.request.linear_x = linear_velocity;
         srv.request.angular_z = angular_velocity;
 
-        if (_client.call(srv)) {
-            _prev_linear = linear_velocity;
-            _prev_angular = angular_velocity;
-        } else {
+        if (!_client.call(srv)) {
             ROS_ERROR("Failed to call service drive_to_target");
         }
     }
@@ -68,24 +55,23 @@ private:
 
     void follow_white_ball(const sensor_msgs::Image& img) {
         const auto column = find_white_ball_column(img);
+
+        // If the ball wasn't found, stop the robot.
         if (column < 0) {
+            drive_robot(0.0F, 0.0F);
             return;
         }
 
-        auto linear_velocity = 0.0F, angular_velocity = 0.0F;
+        // If the white ball is off the center, steer in that direction.
+        const auto center = static_cast<float>(img.width) * 0.5F;
+        const auto deviation = (center - static_cast<float>(column)) / static_cast<float>(img.width);
+        const auto angular_velocity = deviation * _angular_velocity;
 
-        // If the white ball is …
-        // - in the left third, then turn left.
-        // - in the right third, then turn right.
-        // - in between, then move forward.
+        // If the ball is in the center, move forward.
         const auto left_threshold = img.width / 3;
         const auto right_threshold = img.width * 2 / 3;
-
-        if (column <= left_threshold) {
-            angular_velocity = _angular_velocity;
-        } else if (column > right_threshold) {
-            angular_velocity = -_angular_velocity;
-        } else {
+        auto linear_velocity = 0.0F;
+        if (column >= left_threshold && column <= right_threshold) {
             linear_velocity = _linear_velocity;
         }
 
@@ -99,9 +85,6 @@ private:
 
     float _linear_velocity;
     float _angular_velocity;
-
-    float _prev_linear = 0.0F;
-    float _prev_angular = 0.0F;
 };
 
 int main(int argc, char **argv) {
