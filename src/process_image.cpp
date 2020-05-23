@@ -17,12 +17,26 @@ public:
     }
 
 private:
+    bool velocities_changed(const float linear_velocity, const float angular_velocity) const {
+        const auto linear_changed = linear_velocity != _prev_linear;
+        const auto angular_changed = angular_velocity != _prev_angular;
+        return linear_changed || angular_changed;
+    }
+
     void drive_robot(const float linear_velocity, const float angular_velocity) {
+        // Stops us from spamming 0/0 controls when the ball is out of view.
+        if (!velocities_changed(linear_velocity, angular_velocity)) {
+            return;
+        }
+
         ball_chaser::DriveToTarget srv;
         srv.request.linear_x = linear_velocity;
         srv.request.angular_z = angular_velocity;
 
-        if (!_client.call(srv)) {
+        if (_client.call(srv)) {
+            _prev_linear = linear_velocity;
+            _prev_angular = angular_velocity;
+        } else {
             ROS_ERROR("Failed to call service drive_to_target");
         }
     }
@@ -36,7 +50,6 @@ private:
         // The ball is set to be ambient, specular and emissive white, so will
         // be strictly and plainly white in the image. It's a horrible assumption
         // to make that any white pixel resembles the ball, but here goes nothing ...
-        auto matched_column = -1;
         const auto stride_bytes = img.step;
         const auto num_pixels = img.height * stride_bytes;
         for (auto i = 0; i < num_pixels; i += bytes_per_pixel) {
@@ -85,6 +98,9 @@ private:
 
     float _linear_velocity;
     float _angular_velocity;
+
+    float _prev_linear = 0.0F;
+    float _prev_angular = 0.0F;
 };
 
 int main(int argc, char **argv) {
