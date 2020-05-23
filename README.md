@@ -6,6 +6,12 @@ To run the world, run:
 roslaunch my_robot world.launch
 ````
 
+To run the ball chasing controller, tun:
+
+```bash
+roslaunch ball_chaser ball_chaser.launch
+```
+
 ## Building with CLion IDE
 
 **Note:** This does not _really_ work, as CLion will be unable to find generated headers. It's still a bit
