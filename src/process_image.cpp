@@ -14,6 +14,7 @@ public:
 
         _n.param("forward_vel", _linear_velocity, 0.2F);
         _n.param("angular_vel", _angular_velocity, 1.5707963267948966F);
+        _n.param("vel_decay", _decay, 0.9F);
     }
 
 private:
@@ -23,7 +24,15 @@ private:
         return linear_changed || angular_changed;
     }
 
-    void drive_robot(const float linear_velocity, const float angular_velocity) {
+    void drive_robot(float linear_velocity, float angular_velocity) {
+        if (std::abs(linear_velocity) <= 1e-4F) {
+            linear_velocity = 0.0F;
+        }
+
+        if (std::abs(angular_velocity) <= 1e-4F) {
+            angular_velocity = 0.0F;
+        }
+
         // Stops us from spamming 0/0 controls when the ball is out of view.
         if (!velocities_changed(linear_velocity, angular_velocity)) {
             return;
@@ -71,22 +80,21 @@ private:
 
         // If the ball wasn't found, stop the robot.
         if (column < 0) {
-            drive_robot(0.0F, 0.0F);
+            drive_robot(_linear_velocity * _decay, _angular_velocity * _decay);
             return;
         }
 
         // If the white ball is off the center, steer in that direction.
         const auto center = static_cast<float>(img.width) * 0.5F;
-        const auto deviation = (center - static_cast<float>(column)) / static_cast<float>(img.width);
-        const auto angular_velocity = deviation * _angular_velocity;
+        const auto deviation = 2.0F * (static_cast<float>(column) - center) / static_cast<float>(img.width);
+        const auto angular_velocity = -std::sqrt(deviation) * _angular_velocity;
 
-        // If the ball is in the center, move forward.
-        const auto left_threshold = img.width / 3;
-        const auto right_threshold = img.width * 2 / 3;
-        auto linear_velocity = 0.0F;
-        if (column >= left_threshold && column <= right_threshold) {
-            linear_velocity = _linear_velocity;
-        }
+        // The closer the ball is to the center, the faster we go:
+        const auto velocity_factor = 1.0F - std::abs(deviation);
+        auto linear_velocity = std::sqrt(velocity_factor) * _linear_velocity;
+
+        std::string msg = "Deviation: " + std::to_string(deviation) + ", vel. factor: " + std::to_string(velocity_factor);
+        ROS_INFO_STREAM(msg);
 
         drive_robot(linear_velocity, angular_velocity);
     }
@@ -98,13 +106,14 @@ private:
 
     float _linear_velocity;
     float _angular_velocity;
+    float _decay;
 
     float _prev_linear = 0.0F;
     float _prev_angular = 0.0F;
 };
 
 int main(int argc, char **argv) {
-        ros::init(argc, argv, "process_image");
+    ros::init(argc, argv, "process_image");
     ProcessImage ProcessImageNode;
     ros::spin();
     return 0;
