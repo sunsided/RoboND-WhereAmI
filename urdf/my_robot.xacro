@@ -218,4 +218,12 @@
         <material>Gazebo/GreenGlow</material>
     </gazebo>
 
+    <gazebo reference="chassis">
+        <material>Gazebo/Gold</material>
+    </gazebo>
+
+    <gazebo reference="camera">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
 </robot>
