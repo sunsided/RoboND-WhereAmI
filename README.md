@@ -1,4 +1,4 @@
-# Go Chase It!
+# RoboND Go Chase It!
 
 This repository uses Git submodules. To clone it, run
 
