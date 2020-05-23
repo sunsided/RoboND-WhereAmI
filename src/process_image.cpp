@@ -80,26 +80,25 @@ private:
 
         // If the ball wasn't found, stop the robot.
         if (column < 0) {
-            drive_robot(_linear_velocity * _decay, _angular_velocity * _decay);
+            drive_robot(_prev_linear * _decay, _prev_angular * _decay);
             return;
         }
 
-        // Determine how far the ball is off-center.
-        const auto center = static_cast<float>(img.width) * 0.5F;
-        auto deviation = 2.0F * (static_cast<float>(column) - center) / static_cast<float>(img.width);
-        if (deviation >= -0.2F && deviation <= 0.2F) {
-            deviation = 0.0F;
-        }
+        // If the white ball is …
+        // - in the left third, then turn left.
+        // - in the right third, then turn right.
+        // - in between, then move forward.
+        const auto left_threshold = img.width / 3;
+        const auto right_threshold = img.width * 2 / 3;
 
-        // If the white ball is off the center, steer in that direction.
-        auto angular_velocity = -boost::math::sign(deviation) * std::sqrt(std::abs(deviation)) * _angular_velocity;
-
-        // The closer the ball is to the center, the faster we go:
-        auto linear_velocity = _linear_velocity * _decay;
-        if (deviation != 0.0F) {
-            const auto velocity_factor = 1.0F - (deviation * deviation);
-            linear_velocity = velocity_factor * _linear_velocity;
-            angular_velocity = angular_velocity * _decay;
+        auto linear_velocity = _prev_linear * _decay;
+        auto angular_velocity = _prev_angular * _decay;
+        if (column <= left_threshold) {
+            angular_velocity = _angular_velocity;
+        } else if (column > right_threshold) {
+            angular_velocity = -_angular_velocity;
+        } else {
+            linear_velocity = _linear_velocity;
         }
 
         drive_robot(linear_velocity, angular_velocity);
