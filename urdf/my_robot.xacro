@@ -53,36 +53,6 @@
             </geometry>
         </visual>
 
-        <!--
-        <collision name="back_left_caster_collision">
-            <origin xyz="-0.15 0.05 -0.06" rpy="0 0 0"/>
-            <geometry>
-                <sphere radius="0.04"/>
-            </geometry>
-        </collision>
-
-        <visual name="back_left_caster_visual">
-            <origin xyz="-0.15 0.05 -0.06" rpy="0 0 0"/>
-            <geometry>
-                <sphere radius="0.04"/>
-            </geometry>
-        </visual>
-
-        <collision name="back_right_caster_collision">
-            <origin xyz="-0.15 -0.05 -0.06" rpy="0 0 0"/>
-            <geometry>
-                <sphere radius="0.04"/>
-            </geometry>
-        </collision>
-
-        <visual name="back_right_caster_visual">
-            <origin xyz="-0.15 -0.05 -0.06" rpy="0 0 0"/>
-            <geometry>
-                <sphere radius="0.04"/>
-            </geometry>
-        </visual>
-        -->
-
     </link>
 
     <link name="left_wheel">
