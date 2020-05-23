@@ -5,7 +5,7 @@
 
     <!-- The process_image node -->
     <node name="process_image" type="process_image" pkg="ball_chaser" output="screen">
-        <param name="forward_vel" value="0.2" />
+        <param name="forward_vel" value="0.8" />
         <param name="angular_vel" value="1.5707963267948966" />
         <param name="_decay" value="0.9" />
     </node>

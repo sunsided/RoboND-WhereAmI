@@ -84,17 +84,23 @@ private:
             return;
         }
 
-        // If the white ball is off the center, steer in that direction.
+        // Determine how far the ball is off-center.
         const auto center = static_cast<float>(img.width) * 0.5F;
-        const auto deviation = 2.0F * (static_cast<float>(column) - center) / static_cast<float>(img.width);
-        const auto angular_velocity = -std::sqrt(deviation) * _angular_velocity;
+        auto deviation = 2.0F * (static_cast<float>(column) - center) / static_cast<float>(img.width);
+        if (deviation >= -0.2F && deviation <= 0.2F) {
+            deviation = 0.0F;
+        }
+
+        // If the white ball is off the center, steer in that direction.
+        auto angular_velocity = -boost::math::sign(deviation) * std::sqrt(std::abs(deviation)) * _angular_velocity;
 
         // The closer the ball is to the center, the faster we go:
-        const auto velocity_factor = 1.0F - std::abs(deviation);
-        auto linear_velocity = std::sqrt(velocity_factor) * _linear_velocity;
-
-        std::string msg = "Deviation: " + std::to_string(deviation) + ", vel. factor: " + std::to_string(velocity_factor);
-        ROS_INFO_STREAM(msg);
+        auto linear_velocity = _linear_velocity * _decay;
+        if (deviation != 0.0F) {
+            const auto velocity_factor = 1.0F - (deviation * deviation);
+            linear_velocity = velocity_factor * _linear_velocity;
+            angular_velocity = angular_velocity * _decay;
+        }
 
         drive_robot(linear_velocity, angular_velocity);
     }
