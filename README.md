@@ -1,5 +1,15 @@
 # Go Chase It!
 
+This repository uses Git submodules. To clone it, run
+
+```bash
+git clone --recursive git@github.com:sunsided/RoboND-GoChaseIt.git
+```
+
+Note that the submodules point to this very repo and live in the `my_robot` and `ball_chaser` branches. 
+
+## Running the code
+
 To run the world, run:
 
 ```bash
