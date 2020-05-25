@@ -20,8 +20,8 @@
         <param name="global_frame_id" value="map"/>
 
         <!-- Set initial position estimate. -->
-        <param name="initial_pose_x" value="-3.1"/>
-        <param name="initial_pose_y" value="4.1"/>
+        <!-- <param name="initial_pose_x" value="-3.1"/>
+        <param name="initial_pose_y" value="4.1"/> -->
     </node>
 
     <!-- Move Base -->
