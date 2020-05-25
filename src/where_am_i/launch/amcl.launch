@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+    <!-- Map Server -->
+    <arg name="map_file" default="$(find my_robot)/worlds/horrible.world"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+    <!-- AMCL (Adaptive Monte-Carlo Localization) Node -->
+    <node name="amcl" pkg="amcl" type="amcl" output="screen">
+        <!-- In our simulation, the Hokuyo LiDAR sensor doesn't publish to "scan",
+             but to "where_am_i/laser/scan", so we remap the topic.
+             See http://wiki.ros.org/roslaunch/XML/remap -->
+        <remap from="scan" to="where_am_i/laser/scan"/>
+
+        <!-- Connect world ("map") frame to robot ("odom") frame. -->
+        <param name="odom_frame_id" value="odom"/>
+        <param name="odom_model_type" value="diff-corrected"/>
+        <param name="base_frame_id" value="robot_footprint"/>
+        <param name="global_frame_id" value="map"/>
+
+        <!-- Set initial position estimate. -->
+        <param name="initial_pose_x" value="-3.884996"/>
+        <param name="initial_pose_y" value="-3.612370"/>
+    </node>
+
+    <!-- Move Base -->
+    <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
+        <!-- Remapping like we did for the AMCL node. -->
+        <remap from="scan" to="where_am_i/laser/scan"/>
+
+        <!-- Add planners. -->
+        <param name="base_global_planner" value="navfn/NavfnROS" />
+        <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+    </node>
+
+</launch>
