@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y \
     ros-kinetic-map-server \
     ros-kinetic-move-base \
     ros-kinetic-amcl \
+    libignition-math2-dev \
+    protobuf-compiler \
  && rm -rf /var/lib/apt/lists/*
 
 
