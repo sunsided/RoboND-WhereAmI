@@ -19,6 +19,12 @@
         <param name="base_frame_id" value="robot_footprint"/>
         <param name="global_frame_id" value="map"/>
 
+        <!-- Additional parameters -->
+        <param name="min_particles" value="500"/>
+        <param name="transform_tolerance" value="0.5"/>
+        <param name="recovery_alpha_slow" value="0.001"/>
+        <param name="recovery_alpha_fast" value="0.1"/>
+
         <!-- Set initial position estimate. -->
         <!-- <param name="initial_pose_x" value="-3.1"/>
         <param name="initial_pose_y" value="4.1"/> -->
