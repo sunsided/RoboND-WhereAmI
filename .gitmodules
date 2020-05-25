@@ -1,8 +1,0 @@
-[submodule "my_robot"]
-	path = src/my_robot
-	url = https://github.com/sunsided/RoboND-GoChaseIt.git
-	branch = my_robot
-[submodule "ball_chaser"]
-	path = src/ball_chaser
-	url = https://github.com/sunsided/RoboND-GoChaseIt.git
-	branch = ball_chaser
