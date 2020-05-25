@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>my_robot</name>
+  <name>where_am_i</name>
   <version>0.0.0</version>
-  <description>The my_robot package</description>
+  <description>The where_am_i package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <maintainer email="thanks@but.no">Markus Mayer</maintainer>
@@ -18,7 +18,7 @@
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
   <!-- <url type="website">http://wiki.ros.org/my_robot</url> -->
-  <url type="repository">https://github.com/sunsided/RoboND-GoChaseIt</url>
+  <url type="repository">https://github.com/sunsided/RoboND-WhereAmI</url>
 
 
   <!-- Author tags are optional, multiple are allowed, one per tag -->
