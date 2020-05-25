@@ -8,9 +8,9 @@
       <updateRate>10</updateRate>
       <leftJoint>left_wheel_hinge</leftJoint>
       <rightJoint>right_wheel_hinge</rightJoint>
-      <wheelSeparation>0.36</wheelSeparation>
+      <wheelSeparation>0.40</wheelSeparation>
       <wheelDiameter>0.15</wheelDiameter>
-      <torque>10</torque>
+      <torque>20</torque>
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
@@ -19,7 +19,7 @@
       <publishWheelJointState>false</publishWheelJointState>
       <rosDebugLevel>na</rosDebugLevel>
       <wheelAcceleration>0</wheelAcceleration>
-      <wheelTorque>5</wheelTorque>
+      <wheelTorque>10</wheelTorque>
       <odometrySource>world</odometrySource>
       <publishTf>1</publishTf>
       <publishOdomTF>true</publishOdomTF>
