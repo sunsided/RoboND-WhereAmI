@@ -11,7 +11,7 @@
         <!-- In our simulation, the Hokuyo LiDAR sensor doesn't publish to "scan",
              but to "where_am_i/laser/scan", so we remap the topic.
              See http://wiki.ros.org/roslaunch/XML/remap -->
-        <remap from="scan" to="where_am_i/laser/scan"/>
+        <!-- <remap from="scan" to="where_am_i/laser/scan"/> -->
 
         <!-- Connect world ("map") frame to robot ("odom") frame. -->
         <param name="odom_frame_id" value="odom"/>
@@ -20,14 +20,14 @@
         <param name="global_frame_id" value="map"/>
 
         <!-- Set initial position estimate. -->
-        <param name="initial_pose_x" value="-3.884996"/>
-        <param name="initial_pose_y" value="-3.612370"/>
+        <param name="initial_pose_x" value="-3.1"/>
+        <param name="initial_pose_y" value="4.1"/>
     </node>
 
     <!-- Move Base -->
     <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
         <!-- Remapping like we did for the AMCL node. -->
-        <remap from="scan" to="where_am_i/laser/scan"/>
+        <!-- <remap from="scan" to="where_am_i/laser/scan"/> -->
 
         <!-- Add planners. -->
         <param name="base_global_planner" value="navfn/NavfnROS" />
