@@ -32,6 +32,13 @@
         <!-- Add planners. -->
         <param name="base_global_planner" value="navfn/NavfnROS" />
         <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+
+        <!-- Add configuration files. -->
+        <rosparam file="$(find where_am_i)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find where_am_i)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find where_am_i)/config/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find where_am_i)/config/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find where_am_i)/config/base_local_planner_params.yaml" command="load" />
     </node>
 
 </launch>
