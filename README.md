@@ -1,26 +1,4 @@
-# RoboND Go Chase It!
-
-This repository uses Git submodules. To clone it, run
-
-```bash
-git clone --recursive git@github.com:sunsided/RoboND-GoChaseIt.git
-```
-
-Note that the submodules point to this very repo and live in the `my_robot` and `ball_chaser` branches. 
-
-## Running the code
-
-To run the world, run:
-
-```bash
-roslaunch my_robot world.launch
-````
-
-To run the ball chasing controller, tun:
-
-```bash
-roslaunch ball_chaser ball_chaser.launch
-```
+# RoboND Where Am I?
 
 ## Building with CLion IDE
 

@@ -9,6 +9,8 @@
           </mappings>
           <excludedPaths>
             <excludedPath local="true" path="$PROJECT_DIR$/src/cmake-build-debug-docker-container" />
+            <excludedPath local="true" path="$PROJECT_DIR$/build" />
+            <excludedPath local="true" path="$PROJECT_DIR$/src/../../build" />
           </excludedPaths>
         </serverdata>
       </paths>

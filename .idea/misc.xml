@@ -4,8 +4,14 @@
     <contentRoot DIR="$PROJECT_DIR$" />
   </component>
   <component name="CidrRootsConfiguration">
+    <sourceRoots>
+      <file path="$PROJECT_DIR$/src/ball_chaser" />
+      <file path="$PROJECT_DIR$/src/my_robot" />
+    </sourceRoots>
     <libraryRoots>
       <file path="$PROJECT_DIR$/devel/include" />
+      <file path="/usr/src/gmock" />
+      <file path="/usr/src/gtest" />
     </libraryRoots>
     <excludeRoots>
       <file path="$PROJECT_DIR$/.tmp" />
@@ -16,13 +22,5 @@
   </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
-  </component>
-  <component name="ROSSettings">
-    <option name="rosPath" value="$PROJECT_DIR$/../../../../ros" />
-    <option name="workspacePath" value="$PROJECT_DIR$/../../../../ros" />
-    <option name="additionalSources" value="" />
-    <option name="excludedXmls" value="" />
-    <option name="knownKeys" value="" />
-    <option name="depSources" value="https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml&quot;https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml&quot;https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml" />
   </component>
 </project>
