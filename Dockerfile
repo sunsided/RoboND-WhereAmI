@@ -2,13 +2,22 @@ FROM sunside/ros-gazebo-gpu:kinetic-nvidia
 
 USER root
 
-# Install required ROS packages, as well as SSH for Remote Host development.
+# Install required ROS packages, as well as GDB for debugging.
 RUN apt-get update && apt-get install -y \
     ros-kinetic-gazebo-ros-control \
     ros-kinetic-effort-controllers \
     ros-kinetic-joint-state-controller \
     gdb \
  && rm -rf /var/lib/apt/lists/*
+
+# Install packages for Where Am I? project
+RUN apt-get update && apt-get install -y \
+    ros-kinetic-navigation \
+    ros-kinetic-map-server \
+    ros-kinetic-move-base \
+    ros-kinetic-amcl \
+ && rm -rf /var/lib/apt/lists/*
+
 
 # Allow SSH login into the container.
 # See e.g. https://github.com/JetBrains/clion-remote/blob/master/Dockerfile.remote-cpp-env
