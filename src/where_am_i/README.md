@@ -1,9 +1,9 @@
-# Go Chase It! - `my_robot` package
+# Where Am I? - world package
 
 To run, execute
 
 ```bash
-roslaunch my_robot world.launch
+roslaunch where_am_i world.launch
 ```
 
 This will spawn the Gazebo world including a white ball to chase,

@@ -3,7 +3,7 @@
 <launch>
 
   <!-- World File -->
-  <arg name="world_file" default="$(find my_robot)/worlds/horrible.world"/>
+  <arg name="world_file" default="$(find where_am_i)/worlds/horrible.world"/>
 
   <!-- Launch Gazebo World -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -22,10 +22,10 @@
   <arg name="yaw" default="1.825706"/>
 
   <!-- Launch other relevant files-->
-  <include file="$(find my_robot)/launch/robot_description.launch"/>
+  <include file="$(find where_am_i)/launch/robot_description.launch"/>
 
   <!-- Find my robot Description-->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find my_robot)/urdf/my_robot.xacro'"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find where_am_i)/urdf/my_robot.xacro'"/>
 
   <!-- Spawn My Robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
