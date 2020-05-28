@@ -34,10 +34,10 @@
         <param name="update_min_a" value="0.17453292519943295" />
 
         <!-- Attempting to fix localization errors. -->
-        <!--<param name="odom_alpha1" value="0.5" />
-        <param name="odom_alpha2" value="0.5" />
-        <param name="odom_alpha3" value="2.0" />
-        <param name="odom_alpha4" value="2.0" />-->
+        <param name="odom_alpha1" value="0.01" />
+        <param name="odom_alpha2" value="0.01" />
+        <param name="odom_alpha3" value="0.01" />
+        <param name="odom_alpha4" value="0.01" />
     </node>
 
     <!-- Move Base -->
