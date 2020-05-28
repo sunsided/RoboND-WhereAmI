@@ -3,7 +3,7 @@
 <launch>
 
     <!-- Map Server -->
-    <arg name="map_file" default="$(find where_am_i)/maps/horrible.yaml"/>
+    <arg name="map_file" default="$(find where_am_i)/maps/less_horrible.yaml"/>
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
     <!-- AMCL (Adaptive Monte-Carlo Localization) Node -->

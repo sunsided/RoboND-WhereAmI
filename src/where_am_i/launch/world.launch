@@ -3,7 +3,7 @@
 <launch>
 
   <!-- World File -->
-  <arg name="world_file" default="$(find where_am_i)/worlds/horrible.world"/>
+  <arg name="world_file" default="$(find where_am_i)/worlds/less_horrible.world"/>
 
   <!-- Launch Gazebo World -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -14,8 +14,8 @@
   </include>
 
   <!-- Robot pose -->
-  <arg name="x" default="-1"/>
-  <arg name="y" default="-1"/>
+  <arg name="x" default="5"/>
+  <arg name="y" default="2.155"/>
   <arg name="z" default="0.000000"/>
   <arg name="roll" default="0"/>
   <arg name="pitch" default="0"/>
