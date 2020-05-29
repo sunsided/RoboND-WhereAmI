@@ -36,6 +36,12 @@ but still, the bot goes straight until the local cost map shows a clear obstacle
 
 ![](.readme/derp.webp)
 
+Note that in the current setup, the applied torque will result in the
+bot doing a wheelie when accelerating, as well as a stoppie when braking.
+This results in the LiDAR temporarily scanning the ceiling or the floor.
+The cost maps are set up to ignore short-term interferences of this kind
+and will recover from this behavior immediately, so it's not much of
+an issue regarding the project.
 
 ## Building with CLion IDE
 
