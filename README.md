@@ -46,23 +46,25 @@ the legs of the table in the left center of the map:
 
 ![](.readme/manual.webp)
 
-One of the biggest issues in control that's still unsolved is the disagreement
-of the local planner with the global planner. In the following video,
-the local costmap was never populated, resulting in the bot heading straight
-from the wall.
-
-![](.readme/derp.webp)
-
-Eventually, only removing both the `devel` and `build` directories, 
-building from scratch and restarting the Docker container helped me there -
-but still, the bot goes straight until the local cost map shows a clear obstacle. 
-
 Note that in the current setup, the applied torque will result in the
 bot doing a wheelie when accelerating, as well as a stoppie when braking.
 This results in the LiDAR temporarily scanning the ceiling or the floor.
 The cost maps are set up to ignore short-term interferences of this kind
 and will recover from this behavior immediately, so it's not much of
 an issue regarding the project.
+
+## Issues
+
+One of the biggest issues in control that's still unsolved is the disagreement
+of the local planner with the global planner. In the following video,
+the local costmap was never populated, resulting in the bot heading straight
+for the wall.
+
+![](.readme/derp.webp)
+
+Eventually, only removing both the `devel` and `build` directories, 
+building from scratch and restarting the Docker container helped me there -
+but still, the bot goes straight until the local cost map shows a clear obstacle. 
 
 ## Building with CLion IDE
 
