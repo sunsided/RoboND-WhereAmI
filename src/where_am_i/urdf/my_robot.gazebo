@@ -2,7 +2,7 @@
 <robot>
 
   <gazebo>
-    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
       <legacyMode>false</legacyMode>
 
       <updateRate>10</updateRate>
@@ -13,8 +13,10 @@
       <alwaysOn>true</alwaysOn>
       <updateRate>10</updateRate>
 
-      <leftJoint>left_wheel_hinge</leftJoint>
-      <rightJoint>right_wheel_hinge</rightJoint>
+      <leftFrontJoint>front_left_wheel_hinge</leftFrontJoint>
+      <rightFrontJoint>front_right_wheel_hinge</rightFrontJoint>
+      <leftRearJoint>back_left_wheel_hinge</leftRearJoint>
+      <rightRearJoint>back_right_wheel_hinge</rightRearJoint>
 
       <torque>10</torque>
       <wheelTorque>10</wheelTorque>
@@ -27,8 +29,11 @@
       <odometryFrame>odom</odometryFrame>
       <robotBaseFrame>robot_footprint</robotBaseFrame>
       <odometrySource>world</odometrySource>
+
       <publishTf>1</publishTf>
-      <publishOdom>true</publishOdom>
+      <publishOdomTf>true</publishOdomTf>
+
+      <broadcastTF>true</broadcastTF>
     </plugin>
   </gazebo>
 
