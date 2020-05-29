@@ -3,9 +3,10 @@ map_type: costmap
 obstacle_range: 2.0 # 2.0
 raytrace_range: 5.0 # 3.0
 
-transform_tolerance: 0.2 # 0.0
+transform_tolerance: 0.5 # 0.0
+expected_update_rate: 10
 
-robot_radius: 0.3 # 0.3
+robot_radius: 0.4 # 0.3
 inflation_radius: 0.3 # 0.3
 cost_scaling_factor: 5.0
 
@@ -18,4 +19,7 @@ laser_scan_sensor:
   topic: /scan
   marking: true
   clearing: true
+  # https://answers.ros.org/question/119051/local-costmap-empty-using-move_base_node/
+  min_obstacle_height: -0.3
+  max_obstacle_height: 0.3
 
