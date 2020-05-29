@@ -1,26 +1,27 @@
-controller_frequency: 20
-planner_frequency: 2
-
 TrajectoryPlannerROS:
-  max_vel_x: 0.5 #0.5
-  min_vel_x: -0.1 #0.01
-  max_vel_theta: 1.57 #1.5
+  holonomic_robot: false
 
+  # Robot Configuration Parameters
+  max_vel_x:  0.5 #0.5
+  min_vel_x: -0.1 #0.01
+
+  min_vel_theta: -1.57
+  max_vel_theta:  1.57 #1.5
   min_in_place_vel_theta: 0.314
 
-  acc_lim_theta: 3.14
   acc_lim_x: 2.0
   acc_lim_y: 2.0
+  acc_lim_theta: 3.14
 
+  # Forward Simulation Parameters
   sim_time: 1.0
-
   vx_samples: 5.0
   vtheta_samples: 10.0
 
+  # Trajectory Scoring Parameters
+  meter_scoring: true
   pdist_scale: 0.6 #0.6
   gdist_scale: 0.8 #0.8
   occdist_scale: 0.5
   heading_lookahead: 1.0
   dwa: true
-
-  holonomic_robot: false
