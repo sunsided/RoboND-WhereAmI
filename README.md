@@ -1,5 +1,42 @@
 # RoboND Where Am I?
 
+![](.readme/whee.gif)
+
+To run, execute:
+
+```bash
+roslaunch where_am_i world.launch
+roslaunch where_am_i amcl.launch
+```
+
+You can also use keyboard teleop to control the bot manually:
+
+```bash
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+``` 
+
+Building requires ROS Kinetic; you can try executing `./run_nvidia.sh` to drop into an X11 aware
+Docker container with NVIDIA GPU support.
+
+Here's a video of the bot when executing a plan:
+
+![](.readme/automatic.webp)
+
+Here's a video of the bot being controlled manually through the legs of the
+table shown in the first GIF of this README:
+
+![](.readme/manual.webp)
+
+One of the biggest issues in control that's still unsolved is the disagreement
+of the local planner with the global planner. In the following video,
+the local costmap was never populated, resulting in the bot heading straight
+from the wall. Eventually, only removing both the `devel` and `build` directories, 
+building from scratch and restarting the Docker container helped me there -
+but still, the bot goes straight until the local cost map shows a clear obstacle. 
+
+![](.readme/derp.webp)
+
+
 ## Building with CLion IDE
 
 **Note:** This does not _really_ work, as CLion will be unable to find generated headers. It's still a bit
