@@ -18,25 +18,44 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 Building requires ROS Kinetic; you can try executing `./run_nvidia.sh` to drop into an X11 aware
 Docker container with NVIDIA GPU support.
 
-Here's a video of the bot when executing a plan. The overlaid white map
-is the local map, and the white arrows show the AMCL particles. As soon as the
-bot rotates, localization improves drastically:
+The simulation environment is this building:
+
+![](.readme/map.jpg)
+
+Here's a visualization in RViz showing the individual planning elements:
+
+- The global cost map is shown in false color, where pink corresponds to
+  solid obstacles and cyan represents an "inflation zone" around it, used
+  to provide a safety buffer defined by the bot's dimensions.
+- The white rectangle represents the local map, in which white is safe space
+  and black represents an obstacle.
+- The orange lines are formed by a LiDAR point cloud as measured by the black
+  sensor on top of the robot base, displayed here in red.
+- The white arrows, lastly, represent particles of the Adaptive Monte-Carlo
+  Localization ([AMCL](http://wiki.ros.org/amcl)) node.
+
+![](.readme/local-map.jpg)
+
+After setting a navigation goal in RViz, we can observe the bot executing _some_
+plan. As soon as the bot rotates, localization improves drastically:
 
 ![](.readme/automatic.webp)
 
-Here's a video of the bot being controlled via teleop through the legs of the
-table (shown in the first GIF of this README):
+On the other hand, here's a video of the bot being controlled via teleop through
+the legs of the table in the left center of the map:
 
 ![](.readme/manual.webp)
 
 One of the biggest issues in control that's still unsolved is the disagreement
 of the local planner with the global planner. In the following video,
 the local costmap was never populated, resulting in the bot heading straight
-from the wall. Eventually, only removing both the `devel` and `build` directories, 
-building from scratch and restarting the Docker container helped me there -
-but still, the bot goes straight until the local cost map shows a clear obstacle. 
+from the wall.
 
 ![](.readme/derp.webp)
+
+Eventually, only removing both the `devel` and `build` directories, 
+building from scratch and restarting the Docker container helped me there -
+but still, the bot goes straight until the local cost map shows a clear obstacle. 
 
 Note that in the current setup, the applied torque will result in the
 bot doing a wheelie when accelerating, as well as a stoppie when braking.
