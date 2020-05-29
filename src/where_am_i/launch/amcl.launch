@@ -15,7 +15,7 @@
 
         <!-- Connect world ("map") frame to robot ("odom") frame. -->
         <param name="odom_frame_id" value="odom"/>
-        <param name="odom_model_type" value="diff-corrected"/>
+        <param name="odom_model_type" value="omni-corrected"/>
         <param name="base_frame_id" value="robot_footprint"/>
         <param name="global_frame_id" value="map"/>
 
