@@ -18,12 +18,14 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 Building requires ROS Kinetic; you can try executing `./run_nvidia.sh` to drop into an X11 aware
 Docker container with NVIDIA GPU support.
 
-Here's a video of the bot when executing a plan:
+Here's a video of the bot when executing a plan. The overlaid white map
+is the local map, and the white arrows show the AMCL particles. As soon as the
+bot rotates, localization improves drastically:
 
 ![](.readme/automatic.webp)
 
-Here's a video of the bot being controlled manually through the legs of the
-table shown in the first GIF of this README:
+Here's a video of the bot being controlled via teleop through the legs of the
+table (shown in the first GIF of this README):
 
 ![](.readme/manual.webp)
 
