@@ -4,6 +4,7 @@ To run, execute
 
 ```bash
 roslaunch where_am_i world.launch
+roslaunch where_am_i amcl.launch
 ```
 
 This will spawn the Gazebo world including a white ball to chase,
