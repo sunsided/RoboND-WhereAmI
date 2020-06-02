@@ -13,7 +13,7 @@ You can also use keyboard teleop to control the bot manually:
 
 ```bash
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py
-``` 
+```
 
 Building requires ROS Kinetic; you can try executing `./run_nvidia.sh` to drop into an X11 aware
 Docker container with NVIDIA GPU support.
@@ -65,6 +65,16 @@ for the wall.
 Eventually, only removing both the `devel` and `build` directories, 
 building from scratch and restarting the Docker container helped me there -
 but still, the bot goes straight until the local cost map shows a clear obstacle. 
+
+## Papers
+
+- [ROS Localisation and Navigation using Gazebo](papers/mcleod.pdf):
+
+> The ROS navigation stack is powerful for mobile robots to calculate their position and orientation so they can navigate reliably between obstacles to a goal position. Tuning the navigation stack on a real robot in the real world can be costly and dangerous. This paper presents two different robot models using the Gazebo physics simulator to tune and test the performance of the robots navigation stack.
+
+This paper comes to the conclusion that using a `diff-corrected` model for
+non-omnidirectional robots results in the lowest localization errors due to
+reduced slip compared to `omni`-like models (e.g. skid-steer control).
 
 ## Building with CLion IDE
 
